@@ -597,6 +597,96 @@ button {
   animation: scroll-bounce 1.6s ease-in-out infinite;
 }
 
+/* Authority strip */
+
+.authority-strip {
+  position: relative;
+  z-index: 5;
+  padding: 28px 0 56px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% -120%, rgba(50, 185, 232, 0.12), transparent 48%),
+    var(--ivory);
+}
+
+.authority-strip__inner {
+  position: relative;
+  width: min(calc(100% - 48px), var(--container));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 92% -50%, rgba(50, 185, 232, 0.2), transparent 45%),
+    linear-gradient(135deg, var(--navy-deep), var(--navy));
+  box-shadow: 0 24px 64px rgba(16, 42, 66, 0.18);
+}
+
+.authority-strip__inner::after {
+  content: "";
+  position: absolute;
+  top: -230px;
+  right: -140px;
+  width: 420px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(126, 220, 255, 0.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 64px rgba(126, 220, 255, 0.025), 0 0 0 128px rgba(126, 220, 255, 0.018);
+  pointer-events: none;
+}
+
+.authority-strip__inner > div {
+  position: relative;
+  z-index: 1;
+  min-height: 132px;
+  padding: 30px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.authority-strip__inner > div + div {
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.authority-strip__inner > div:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.authority-strip__inner strong {
+  color: #a7eaff;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 3.8vw, 52px);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.authority-strip__inner span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.authority-strip__statement span {
+  max-width: 360px;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.1vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-transform: none;
+}
+
 /* Shared section typography */
 
 .section-heading {
@@ -986,17 +1076,7 @@ button {
 }
 
 .trajectory-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.65fr);
-  align-items: end;
-  gap: 80px;
-}
-
-.trajectory-intro > p {
-  margin: 0 0 5px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.75;
+  display: block;
 }
 
 .metrics-strip {
@@ -1075,6 +1155,15 @@ button {
   filter: grayscale(0);
   opacity: 1;
   transform: scale(1.05);
+}
+
+.trajectory-summary {
+  max-width: 900px;
+  margin: 48px auto 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.75;
+  text-align: center;
 }
 
 .trajectory-section blockquote {
@@ -1230,7 +1319,7 @@ button {
 }
 
 .contact-copy,
-.contact-cards,
+.contact-actions,
 .social-links {
   position: relative;
   z-index: 1;
@@ -1248,57 +1337,13 @@ button {
   line-height: 1.75;
 }
 
-.contact-cards {
-  margin-top: 64px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+.contact-actions {
+  margin-top: 44px;
+  display: flex;
 }
 
-.contact-card {
-  position: relative;
-  min-height: 178px;
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 22px;
-  display: grid;
-  align-content: center;
-  gap: 7px;
-  background: rgba(255, 255, 255, 0.055);
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-}
-
-.contact-card:hover {
-  border-color: rgba(126, 220, 255, 0.58);
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-4px);
-}
-
-.contact-card > span {
-  color: #8be3ff;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.contact-card strong {
-  font-family: var(--font-display);
-  font-size: 29px;
-  font-weight: 580;
-}
-
-.contact-card small {
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 13px;
-}
-
-.contact-card b {
-  position: absolute;
-  top: 25px;
-  right: 26px;
-  color: #8be3ff;
-  font-size: 21px;
+.contact-cta {
+  min-width: 230px;
 }
 
 .social-links {
@@ -1663,13 +1708,11 @@ button {
     margin: 0 auto;
   }
 
-  .trajectory-intro,
   .team-heading {
     grid-template-columns: 1fr;
     gap: 28px;
   }
 
-  .trajectory-intro > p,
   .team-heading > p {
     max-width: 680px;
   }
@@ -1768,6 +1811,23 @@ button {
     font-size: 8px;
   }
 
+  .authority-strip__inner {
+    width: calc(100% - 40px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 24px;
+  }
+
+  .authority-strip__inner > div {
+    min-height: 110px;
+    padding: 24px 20px;
+  }
+
+  .authority-strip__inner > div:nth-child(3) {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 0;
+  }
+
   .section-heading h2,
   .retail-copy h2,
   .contact-copy h2 {
@@ -1781,8 +1841,7 @@ button {
 
   .focus-grid,
   .specialties-grid,
-  .team-grid,
-  .contact-cards {
+  .team-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1888,8 +1947,8 @@ button {
     border-radius: 30px;
   }
 
-  .contact-cards {
-    margin-top: 46px;
+  .contact-actions {
+    margin-top: 38px;
   }
 
   .site-footer {
@@ -1951,6 +2010,33 @@ button {
     line-height: 1.2;
   }
 
+  .authority-strip__inner {
+    width: calc(100% - 34px);
+    grid-template-columns: 1fr;
+    border-radius: 22px;
+  }
+
+  .authority-strip__inner > div {
+    min-height: 92px;
+    padding: 20px 14px;
+  }
+
+  .authority-strip__inner > div + div,
+  .authority-strip__inner > div:nth-child(3) {
+    grid-column: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: 0;
+  }
+
+  .authority-strip__inner strong {
+    font-size: 40px;
+  }
+
+  .authority-strip__statement span {
+    max-width: 290px;
+    font-size: 22px;
+  }
+
   .section-shell {
     padding-right: 20px;
     padding-left: 20px;
@@ -2004,9 +2090,8 @@ button {
     padding-inline: 4px;
   }
 
-  .contact-card {
-    min-height: 160px;
-    padding: 24px 20px;
+  .contact-cta {
+    width: 100%;
   }
 
   .site-footer {

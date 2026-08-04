@@ -12,6 +12,11 @@ const navItems = [
   { id: "contato", label: "Contato" },
 ] as const;
 
+const commercialCta = {
+  label: "FALAR COM A RVJ",
+  href: "https://wa.me/5511997663723",
+} as const;
+
 const contactOptions = [
   {
     name: "Roque Júnior",
@@ -23,7 +28,7 @@ const contactOptions = [
     name: "Vitor Almeida",
     role: "Área comercial",
     phone: "(11) 9 9766-3723",
-    href: "https://wa.me/5511997663723",
+    href: commercialCta.href,
   },
 ] as const;
 
@@ -49,26 +54,26 @@ const specialties = [
   {
     number: "01",
     title: "Liderança",
-    text: "Transformamos gestores em líderes que inspiram pessoas, fortalecem equipes e entregam resultados.",
+    text: "Desenvolvimento de líderes preparados para engajar pessoas e gerar resultados.",
     skills: ["Comunicação", "Feedback", "Gestão de pessoas", "Inteligência emocional", "Cultura de alta performance"],
   },
   {
     number: "02",
-    title: "Área comercial",
-    text: "Transformamos equipes comerciais em times de alta performance.",
+    title: "Comercial",
+    text: "Capacitação para melhorar performance, abordagem, negociação e vendas.",
     skills: ["Vendas consultivas", "Negociação", "Comunicação", "Atendimento", "Prospecção"],
   },
   {
     number: "03",
-    title: "Varejo — Escola do Varejo Digital",
-    text: "Microlearning e inteligência artificial para treinamentos rápidos, personalizados e contínuos na rotina do colaborador.",
-    skills: ["Aprendizado na rotina", "Conteúdo personalizado", "Gestão em tempo real"],
+    title: "Comportamento",
+    text: "Desenvolvimento comportamental para melhorar comunicação e performance.",
+    skills: ["Autoconhecimento", "Comunicação", "Desenvolvimento"],
   },
   {
     number: "04",
-    title: "Perfil comportamental",
-    text: "Mapeamos características, estilos de comunicação, pontos fortes e oportunidades de desenvolvimento.",
-    skills: ["Autoconhecimento", "Comunicação", "Desenvolvimento"],
+    title: "Varejo / Escola do Varejo Digital",
+    text: "Treinamento contínuo e IA para equipes de vendas, execução e operações em campo.",
+    skills: ["Aprendizado na rotina", "Conteúdo personalizado", "Gestão em tempo real"],
   },
 ] as const;
 
@@ -133,7 +138,7 @@ export default function Home() {
   return (
     <>
       <SiteEffects />
-      <SiteHeader navItems={navItems} />
+      <SiteHeader navItems={navItems} commercialCta={commercialCta} />
 
       <main>
         <section className="hero" id="inicio" aria-labelledby="hero-title">
@@ -158,12 +163,17 @@ export default function Home() {
                 <span className="hero-accent">Gerando resultados.</span>
               </h1>
               <p className="hero-lede">
-                Há mais de 30 anos, a RVJ atua ao lado das maiores empresas do mercado,
-                transformando o potencial humano em performance e resultado.
+                Há mais de 30 anos, desenvolvemos pessoas, líderes e equipes para transformar
+                competências em performance e resultados para o negócio.
               </p>
               <div className="hero-actions">
-                <a className="button button-light" href="#contato">
-                  Fale com um especialista <span aria-hidden="true">→</span>
+                <a
+                  className="button button-light"
+                  href={commercialCta.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {commercialCta.label} <span aria-hidden="true">↗</span>
                 </a>
                 <a className="text-link text-link-light" href="#solucoes">
                   Conheça nossas soluções <span aria-hidden="true">↓</span>
@@ -183,15 +193,32 @@ export default function Home() {
           </a>
         </section>
 
+        <section className="authority-strip" aria-label="Indicadores de experiência da RVJ">
+          <div className="authority-strip__inner" role="list">
+            <div role="listitem">
+              <strong>+30</strong>
+              <span>anos de experiência</span>
+            </div>
+            <div role="listitem">
+              <strong>+35</strong>
+              <span>marcas atendidas</span>
+            </div>
+            <div className="authority-strip__statement" role="listitem">
+              <span>Desenvolvimento de pessoas e negócios.</span>
+            </div>
+          </div>
+        </section>
+
         <section className="focus-section section-shell" id="solucoes" aria-labelledby="focus-title">
           <div className="section-heading" data-reveal>
             <p className="eyebrow">Nosso foco</p>
             <h2 id="focus-title" tabIndex={-1}>
-              Desenvolvimento que move <span className="accent-word">pessoas e negócios.</span>
+              Desenvolver pessoas para <span className="accent-word">potencializar resultados.</span>
             </h2>
             <p>
-              Construímos experiências de aprendizagem que fortalecem competências,
-              lideranças e resultados no dia a dia.
+              Acreditamos que resultados sustentáveis começam pelas pessoas. Por isso,
+              desenvolvemos competências, fortalecemos lideranças e preparamos equipes para
+              transformar conhecimento em performance.
             </p>
           </div>
 
@@ -237,15 +264,15 @@ export default function Home() {
             <div className="retail-copy" data-reveal>
               <p className="eyebrow eyebrow-light">Solução exclusiva</p>
               <h2 id="retail-title" tabIndex={-1}>
-                Escola do <span className="accent-word accent-word-light">Varejo Digital</span>
+                Treinar uma vez <span className="accent-word accent-word-light">não é suficiente.</span>
               </h2>
               <p className="retail-lede">
-                Treine sua equipe de vendas com o <strong>Varejinho</strong>, a inteligência artificial
-                da Escola do Varejo Digital.
+                Sua equipe precisa aprender, aplicar e tirar dúvidas no momento em que o trabalho
+                acontece.
               </p>
               <p>
-                Personalizamos a inteligência para a cultura e a necessidade da sua empresa,
-                entregando treinamentos práticos diretamente pelo WhatsApp.
+                Conheça o <strong>Varejinho</strong>, a inteligência artificial da Escola do Varejo
+                Digital, criada para orientar, ensinar e apoiar sua equipe em tempo real, todos os dias.
               </p>
 
               <div className="retail-features" role="list" aria-label="Benefícios do Varejinho">
@@ -261,7 +288,7 @@ export default function Home() {
               </div>
 
               <a className="button button-outline-light" href="https://escoladovarejo.app" target="_blank" rel="noreferrer">
-                Conheça a Escola do Varejo <span aria-hidden="true">↗</span>
+                CONHECER A ESCOLA DO VAREJO <span aria-hidden="true">↗</span>
               </a>
             </div>
 
@@ -288,13 +315,9 @@ export default function Home() {
             <div className="section-heading">
               <p className="eyebrow">Nossa trajetória</p>
               <h2 id="trajectory-title" tabIndex={-1}>
-                Experiência construída ao lado de <span className="accent-word">grandes marcas.</span>
+                Experiência que gera <span className="accent-word">confiança.</span>
               </h2>
             </div>
-            <p>
-              Ao longo de mais de 30 anos, a RVJ contribuiu para o desenvolvimento de pessoas,
-              equipes e líderes em empresas de diferentes segmentos.
-            </p>
           </div>
 
           <div className="metrics-strip" role="list" aria-label="Indicadores da trajetória da RVJ" data-reveal>
@@ -317,6 +340,11 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <p className="trajectory-summary" data-reveal>
+            Ao longo de mais de 30 anos, ajudamos empresas e equipes a desenvolver pessoas,
+            fortalecer lideranças e potencializar resultados.
+          </p>
 
           <blockquote data-reveal>
             “Grandes empresas são construídas por grandes pessoas. Nossa missão é desenvolver quem faz o negócio acontecer.”
@@ -366,23 +394,23 @@ export default function Home() {
             <div className="contact-copy">
               <p className="eyebrow eyebrow-light">Vamos conversar?</p>
               <h2 id="contact-title" tabIndex={-1}>
-                Empresas melhores são construídas por <span className="accent-word accent-word-light">pessoas melhores.</span>
+                Sua equipe pode <span className="accent-word accent-word-light">performar mais.</span>
               </h2>
               <p>
-                A RVJ está pronta para ser sua parceira estratégica. Desenvolvemos as pessoas certas,
-                com as competências certas, para transformar os resultados da sua organização.
+                Vamos entender os desafios da sua empresa e construir uma solução sob medida para
+                desenvolver pessoas e potencializar resultados.
               </p>
             </div>
 
-            <div className="contact-cards">
-              {contactOptions.map((contact) => (
-                <a href={contact.href} target="_blank" rel="noreferrer" className="contact-card" key={contact.href}>
-                  <span>{contact.role}</span>
-                  <strong>{contact.name}</strong>
-                  <small>WhatsApp · {contact.phone}</small>
-                  <b aria-hidden="true">↗</b>
-                </a>
-              ))}
+            <div className="contact-actions">
+              <a
+                className="button button-light contact-cta"
+                href={commercialCta.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {commercialCta.label} <span aria-hidden="true">↗</span>
+              </a>
             </div>
 
             <nav className="social-links" aria-label="Canais da RVJ">
