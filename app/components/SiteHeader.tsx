@@ -17,11 +17,15 @@ export type NavItem = {
 
 export type SiteHeaderProps = {
   navItems: readonly NavItem[];
+  commercialCta: {
+    label: string;
+    href: string;
+  };
 };
 
 const HEADER_SCROLL_THRESHOLD = 48;
 
-export function SiteHeader({ navItems }: SiteHeaderProps) {
+export function SiteHeader({ navItems, commercialCta }: SiteHeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(
@@ -206,8 +210,13 @@ export function SiteHeader({ navItems }: SiteHeaderProps) {
 
         {renderNavLinks("desktop-nav", "Navegação principal")}
 
-        <a className="header-cta" href="#contato">
-          Fale com um especialista
+        <a
+          className="header-cta"
+          href={commercialCta.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {commercialCta.label}
         </a>
 
         <button
@@ -253,10 +262,12 @@ export function SiteHeader({ navItems }: SiteHeaderProps) {
             {renderNavLinks("mobile-nav", "Navegação móvel")}
             <a
               className="mobile-menu-cta"
-              href="#contato"
-              onClick={(event) => navigateFromMenu(event, "contato")}
+              href={commercialCta.href}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsMenuOpen(false)}
             >
-              Fale com um especialista
+              {commercialCta.label}
             </a>
           </div>
         </div>
